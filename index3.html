@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rating component</title>
+    <script
+      src="https://kit.fontawesome.com/cad3e76647.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Heebo&family=Koulen&family=Secular+One&family=Sen&display=swap");
+      body {
+        font-family: "Heebo", sans-serif;
+        color: white;
+        text-align: center;
+        background-color: #141519;
+      }
+
+      .logo {
+        width: 50px;
+        height: 50px;
+        border-radius: 45px;
+        background-color: #272e36;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        top: 40px;
+        left: 15px;
+      }
+
+      .logo i {
+        color: #fc7613;
+      }
+
+      .container {
+        display: block;
+        margin: 6.8% auto;
+        background-color: #1f2630;
+        height: 420px;
+        width: 400px;
+        border-radius: 30px;
+      }
+      .container-conteudo {
+        position: relative;
+        top: 50px;
+      }
+      h1,
+      p {
+        text-align: justify;
+        padding: 10px 25px 5px 25px;
+        margin: 0px;
+      }
+      .paragrafo {
+        color: #777d87;
+      }
+      .btns {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 10px;
+      }
+      .btn {
+        background-color: #262f38;
+        color: #69717a;
+        font-size: 15px;
+        border-radius: 50px;
+        border: 0px;
+        width: 40px;
+        height: 40px;
+      }
+      .btn:hover {
+        background-color: #7c8898;
+        color: white;
+        cursor: pointer;
+      }
+      .btn-style{
+        background-color: #262f38;
+        color: #69717a;
+        font-size: 15px;
+        border-radius: 50px;
+        border: 0px;
+        width: 40px;
+        height: 40px;
+      }
+
+      .btn-style:hover {
+        background-color: #7c8898;
+        color: white;
+        cursor: pointer;
+      }
+      .submit {
+        background-color: #fc7613;
+        color: white;
+        font-family: "Heebo", sans-serif;
+        font-size: 17px;
+        border: 0px;
+        border-radius: 30px;
+        width: 90%;
+        height: 40px;
+        margin-top: 30px;
+      }
+      #submit {
+        text-decoration: none;
+        color: white;
+      }
+      .submit:hover {
+        background-color: white;
+        color: #fc7613;
+        cursor: pointer;
+      }
+
+      .selecionado {
+        background-color: #fc7613;
+        color: white;
+        font-size: 15px;
+        border-radius: 50px;
+        border: 0px;
+        width: 40px;
+        height: 40px;
+      }
+
+      .myStyle {
+        display: block;
+        margin: 0 auto;
+        background-color: #262f38;
+        color: #fc7613;
+        border: 0px;
+        border-radius: 30px;
+        text-align: center;
+        width: 165px;
+        font-size: 17.5 px;
+      }
+      .imagem img {
+        height: 125px;
+        width: 130px;
+        border-radius: 15px;
+        margin-bottom: 20px;
+      }
+
+      @media screen and (max-width: 600px) {
+        body {
+          height: 500px;
+        }
+        .container {
+          width: 90%;
+          display: block;
+          margin: 70px auto;
+          height: 100%;
+        }
+        .container-conteudo {
+          display: block;
+          margin: 0 auto;
+        }
+        .container-conteudo > {
+          padding-top: 20px;
+        }
+        h1,
+        p {
+          text-align: left;
+          display: block;
+          margin: 0 auto;
+          width: auto;
+        }
+        .titulo-resultado,
+        p {
+          text-align: center;
+        }
+        .mystyle {
+          width: 100%;
+          height: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="logo"><i class="fa-solid fa-star"></i></div>
+      <div class="container-conteudo">
+        <div class="imagem"></div>
+        <div class="resultado"></div>
+        <h1 class="titulo">How do we do?</h1>
+        <p class="paragrafo">
+          Please let us know how we did with your support request. All feedback
+          is appreciated to help us improve our offering!
+        </p>
+        <div class="btns">
+          <button class="btn" value="1" onclick="mudarCor(1)">1</button>
+          <button class="btn" value="2" onclick="mudarCor(2)">2</button>
+          <button class="btn" value="3" onclick="mudarCor(3)">3</button>
+          <button class="btn" value="4" onclick="mudarCor(4)">4</button>
+          <button class="btn" value="5" onclick="mudarCor(5)">5</button>
+        </div>
+        <button class="submit" onclick="enviar()">SUBMIT</button>
+      </div>
+    </div>
+    <script>
+      const botoes = document.querySelectorAll(".btn");
+      const envio = document.querySelector("#submit");
+      let selecionado;
+      const campo = document.querySelector(".resultado");
+      const titulo = document.querySelector(".titulo");
+      const para = document.querySelector(".paragrafo");
+      const btns = document.querySelector(".btns");
+      const campoImagem = document.querySelector(".imagem");
+      const img = document.createElement("img");
+
+      function mudarCor(element) {
+        switch (element) {
+          case 1:
+            selecionado = 1;
+            botoes[0].classList.remove("btn");
+            botoes[0].classList.add("selecionado");
+            removerCor(0);
+            break;
+          case 2:
+            selecionado = 2;
+            botoes[1].classList.remove("btn");
+            botoes[1].classList.add("selecionado");
+            removerCor(1);
+            break;
+          case 3:
+            selecionado = 3;
+            botoes[2].classList.remove("btn");
+            botoes[2].classList.add("selecionado");
+            removerCor(2);
+            break;
+          case 4:
+            selecionado = 4;
+            botoes[3].classList.remove("btn");
+            botoes[3].classList.add("selecionado");
+            removerCor(3);
+            break;
+          case 5:
+            selecionado = 5;
+            botoes[4].classList.remove("btn");
+            botoes[4].classList.add("selecionado");
+            removerCor(4);
+            break;
+        }
+      }
+
+      function removerCor(elementoUsado) {
+        for (let i = 0; i < botoes.length; i++) {
+          if (i == elementoUsado) {
+            continue;
+          } else {
+            botoes[i].classList.remove("selecionado");
+            botoes[i].classList.add("btn");
+          }
+        }
+      }
+      function enviar() {
+        const resultado = document.createElement("p");
+        resultado.textContent = `You selected ${selecionado} out of 5`;
+        const resultadoFormatado = resultado.classList.add("myStyle");
+        console.log(`You selected ${selecionado} out of 5`);
+        campo.appendChild(resultado);
+        campoImagem.appendChild(img);
+        img.src =
+          "https://img.freepik.com/fotos-premium/smartphone-de-negocios-em-fundo-branco-em-estilo-cartoon-ai-gerado_547674-3417.jpg?size=626&ext=jpg&ga=GA1.2.544940273.1675460991&semt=ais";
+        btns.remove();
+        document.querySelector(".submit").remove();
+        document.querySelector(".logo").remove();
+        titulo.style.textAlign = "center";
+        titulo.innerHTML = "Thanky you!";
+        para.style.textAlign = "center";
+        para.innerHTML =
+          "We appreciated you taking the time to give a rating. If you ever need more suport, don't hesitate to get in touch";
+      }
+    </script>
+  </body>
+</html>
